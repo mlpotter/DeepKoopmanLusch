@@ -53,8 +53,8 @@ if __name__ == '__main__':
     with torch.inference_mode():
         model.eval()
 
-        x_recon_hat = model.recover(        model.embed(X_test_recon[[n],:,:].to(device))     ).cpu().squeeze(0)
-        x_recon_hat = model(X_test_recon[[n],:,:].cuda()).cpu().squeeze(0)
+        # x_recon_hat = model.recover(        model.embed(X_test_recon[[n],:,:].to(device))     ).cpu().squeeze(0)
+        x_recon_hat = model(X_test_recon[[n],:,:].to(device)).cpu().squeeze(0)
 
         # print(F.mse_loss(model(X_test_recon.cuda()),X_test_recon.cuda()))
         x_ahead_hat = model.recover(model.koopman_operator(model.embed(X_test_recon[[n],[-1],:].to(device).unsqueeze(0)),horizon)).cpu().squeeze(0)

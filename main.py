@@ -74,8 +74,8 @@ if __name__ == '__main__':
         print("\n","="*10,f" EPOCH {epoch} ","="*10)
         print("\nPrediction Loss: {:.4f}".format(forecast_loss))
         # print("Reconstruction Loss: {:.4f}".format(reconstruction_loss))
-        print("TRAIN LOSS: ",np.mean(train_epoch_loss))
-        print("TEST LOSS: ",np.mean(test_epoch_loss))
+        print("TRAIN LOSS: ",np.sum(train_epoch_loss)/X_train.shape[0])
+        print("TEST LOSS: ",np.sum(test_epoch_loss)/X_test.shape[0])
 
 #* FIDDLE
 
