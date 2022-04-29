@@ -20,12 +20,12 @@ if __name__ == '__main__':
     lr = 1e-3
     horizon = 72;
     batch_size = 128
-    load_chkpt = False
-    chkpt_filename = "fixed_matrix"
+    load_chkpt = True
+    chkpt_filename = "best_fixed_matrix"
     start_epoch = 1
     device="cuda"
 
-    n = 2
+    n = 6
 
     model = Lusch(input_dim,koopman_dim,hidden_dim = hidden_dim,delta_t=delta_t,device=device).to(device)
 
