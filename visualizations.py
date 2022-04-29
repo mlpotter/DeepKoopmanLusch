@@ -25,7 +25,7 @@ if __name__ == '__main__':
     start_epoch = 1
     device="cuda"
 
-    n = 6
+    n = 5
 
     model = Lusch(input_dim,koopman_dim,hidden_dim = hidden_dim,delta_t=delta_t,device=device).to(device)
 
@@ -41,8 +41,6 @@ if __name__ == '__main__':
 
     model.mu = train_dl.dataset.mu.to(device)
     model.std = train_dl.dataset.std.to(device)
-
-    save_every = 5
 
     if load_chkpt:
         print("LOAD CHECKPOINTS")
@@ -65,8 +63,8 @@ if __name__ == '__main__':
         plt.figure(figsize=(20, 10))
         #     for i in range(3):
 
-        plt.plot(np.arange(X_test.shape[1]), X_test[n, :, :], '--')
-        plt.plot(np.arange(x_recon_hat.shape[0]), x_recon_hat)
+        plt.plot(np.arange(X_test.shape[1]), X_test[n, :, :], '-')
+        plt.plot(np.arange(x_recon_hat.shape[0]), x_recon_hat,'--')
         plt.plot(X_test_recon.shape[1] + np.arange(horizon), x_ahead_hat.cpu(), 'r.')
 
         plt.xlabel("Time (n)", fontsize=20)
