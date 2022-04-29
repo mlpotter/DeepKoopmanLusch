@@ -38,8 +38,8 @@ class differential_dataset(Dataset):
         self.horizon = horizon
         self.D = X.shape[-1]
         self.T = X.shape[1]-self.horizon
-        self.mu = torch.tensor([torch.mean(X[:,:,0]), torch.mean(X[:,:,1]), torch.mean(X[:,:,2])])
-        self.std = torch.tensor([torch.std(X[:,:,0]), torch.std(X[:,:,1]), torch.std(X[:,:,2])])
+        self.mu = torch.tensor([torch.mean(X[:,:,i]) for i in range(self.D)])
+        self.std = torch.tensor([torch.std(X[:,:,i]) for i in range(self.D)])
 
     def __len__(self):
         return self.X.shape[0]
