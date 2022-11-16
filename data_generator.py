@@ -16,7 +16,7 @@ def load_data(df,chunk_size=1):
     X = torch.stack(X, 0)
     return X
 
-def load_dataset(dataset_name = "lorenz",file_path=r'C:\Users\lpott\Desktop\DYAN\Code\data',chunk_size=1):
+def load_dataset(dataset_name = "lorenz",file_path=r'.\data',chunk_size=1):
 
     with open(os.path.join(file_path,f"{dataset_name}/{dataset_name}_train_inputs.pickle"), "rb") as handle:
         train_df = pickle.load(handle)
@@ -38,8 +38,8 @@ class differential_dataset(Dataset):
         self.horizon = horizon
         self.D = X.shape[-1]
         self.T = X.shape[1]-self.horizon
-        self.mu = torch.tensor([torch.mean(X[:,:,0]), torch.mean(X[:,:,1]), torch.mean(X[:,:,2])])
-        self.std = torch.tensor([torch.std(X[:,:,0]), torch.std(X[:,:,1]), torch.std(X[:,:,2])])
+        self.mu = torch.tensor([torch.mean(X[:,:,i]) for i in range(self.D)])
+        self.std = torch.tensor([torch.std(X[:,:,i]) for i in range(self.D)])
 
     def __len__(self):
         return self.X.shape[0]
