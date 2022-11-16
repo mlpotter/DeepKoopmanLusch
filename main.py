@@ -21,7 +21,7 @@ if __name__ == '__main__':
     epochs = 100
     lr = 1e-3
     Sp = 72; horizon = 72; T = max(horizon,Sp)
-    batch_size = 256
+    batch_size = 512
     load_chkpt = False
     chkpt_filename = "fixed_matrix"
     save_every = 5
@@ -41,8 +41,8 @@ if __name__ == '__main__':
         print(state_dicts.keys())
 
     X_train,X_test = load_dataset(chunk_size=1)
-    X_train_recon = X_train[:subset_data,:-T,:]; X_test_recon = X_test[:subset_data,:-T,:]
-    X_forecast_train = X_train[:subset_data,-T:,:]; X_forecast_test = X_test[:subset_data,-T:,:]
+    X_train_recon = X_train[:,:-T,:]; X_test_recon = X_test[:,:-T,:]
+    X_forecast_train = X_train[:,-T:,:]; X_forecast_test = X_test[:,-T:,:]
     train_dl = DataLoader(differential_dataset(X_train_recon,T),batch_size=batch_size)
     test_dl = DataLoader(differential_dataset(X_test_recon,T),batch_size=batch_size)
 
