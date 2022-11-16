@@ -22,8 +22,8 @@ if __name__ == '__main__':
     lr = 1e-3
     Sp = 72; horizon = 72; T = max(horizon,Sp)
     batch_size = 256
-    load_chkpt = True
-    chkpt_filename = "best_fixed_matrix"
+    load_chkpt = False
+    chkpt_filename = "fixed_matrix"
     save_every = 5
     start_epoch = 1
     device="cuda"
