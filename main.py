@@ -19,7 +19,6 @@ if __name__ == '__main__':
 
 
     epochs = 100
-    subset_data = 1000
     lr = 1e-3
     Sp = 72; horizon = 72; T = max(horizon,Sp)
     batch_size = 256
