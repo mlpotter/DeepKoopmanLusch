@@ -52,7 +52,7 @@ class KoopmanOperator(nn.Module):
                 K[:, i + 0, i + 0] = cos[:,index] *  exp[:,index]
                 K[:, i + 0, i + 1] = -sin[:,index] * exp[:,index]
                 K[:, i + 1, i + 0] = sin[:,index]  * exp[:,index]
-                K[:, i + 1, i + 1] = -cos[:,index] * exp[:,index]
+                K[:, i + 1, i + 1] = cos[:,index] * exp[:,index]
 
             y = torch.matmul(K,y.unsqueeze(-1)).squeeze(-1)
 
@@ -67,14 +67,14 @@ class Lusch(nn.Module):
 
         self.encoder = nn.Sequential(nn.Linear(input_dim,hidden_dim),
                                      nn.Tanh(),
-                                     # nn.Linear(input_dim, hidden_dim),
-                                     # nn.Tanh(),
+                                     nn.Linear(hidden_dim, hidden_dim),
+                                     nn.Tanh(),
                                      nn.Linear(hidden_dim,koopman_dim))
 
         self.decoder = nn.Sequential(nn.Linear(koopman_dim,hidden_dim),
                                      nn.Tanh(),
-                                     # nn.Linear(input_dim, hidden_dim),
-                                     # nn.Tanh(),
+                                     nn.Linear(hidden_dim, hidden_dim),
+                                     nn.Tanh(),
                                      nn.Linear(hidden_dim,input_dim))
 
         self.koopman = KoopmanOperator(koopman_dim,delta_t,device)
