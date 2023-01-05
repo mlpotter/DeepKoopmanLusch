@@ -18,12 +18,12 @@ if __name__ == '__main__':
     delta_t = 0.01
 
 
-    epochs = 100
+    epochs = 300
     lr = 1e-3
     Sp = 72; horizon = 72; T = max(horizon,Sp)
-    batch_size = 512
-    load_chkpt = False
-    chkpt_filename = "fixed_matrix"
+    batch_size = 256
+    load_chkpt = True
+    chkpt_filename = "fixed_matrix_checkk"
     save_every = 5
     start_epoch = 1
     device="cuda"
@@ -38,6 +38,8 @@ if __name__ == '__main__':
         state_dicts = torch.load(chkpt_filename+".pth")
         model.load_state_dict(state_dicts['model'])
         optimizer.load_state_dict(state_dicts['optimizer'])
+        start_epoch=state_dicts["start_epoch"]
+        print(state_dicts["start_epoch"])
         print(state_dicts.keys())
 
     X_train,X_test = load_dataset(chunk_size=1)
