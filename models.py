@@ -52,7 +52,7 @@ class KoopmanOperator(nn.Module):
                 K[:, i + 0, i + 0] = cos[:,index] *  exp[:,index]
                 K[:, i + 0, i + 1] = -sin[:,index] * exp[:,index]
                 K[:, i + 1, i + 0] = sin[:,index]  * exp[:,index]
-                K[:, i + 1, i + 1] = cos[:,index] * exp[:,index]
+                K[:, i + 1, i + 1] = cos[:,index] * exp[:,index] #
 
             y = torch.matmul(K,y.unsqueeze(-1)).squeeze(-1)
 
