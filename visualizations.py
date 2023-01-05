@@ -14,22 +14,17 @@ if __name__ == '__main__':
     hidden_dim = 500
     input_dim = 3
     delta_t = 0.01
-
-
-    epochs = 300
-    lr = 1e-3
+    batch_size=256
     horizon = 72;
-    batch_size = 128
+
     load_chkpt = True
     chkpt_filename = "best_fixed_matrix"
     start_epoch = 1
     device="cuda"
 
-    n = 5
+    n = 2
 
     model = Lusch(input_dim,koopman_dim,hidden_dim = hidden_dim,delta_t=delta_t,device=device).to(device)
-
-    optimizer = torch.optim.Adam(model.parameters(),lr=lr)
 
     X_train, X_test = load_dataset(chunk_size=1)
 
