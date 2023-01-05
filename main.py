@@ -51,7 +51,7 @@ if __name__ == '__main__':
     model.mu = train_dl.dataset.mu.to(device)
     model.std = train_dl.dataset.std.to(device)
 
-    for epoch in range(start_epoch,epochs):
+    for epoch in range(start_epoch+1,epochs):
         train_epoch_loss = []
         test_epoch_loss = []
 
